@@ -148,6 +148,8 @@ export default class PercentageCircle extends Component {
       halfCircle2Styles,
     } = this.computeDerivedState()
 
+    const percent = Math.max(Math.min(100, this.props.percent), 0);
+
     return (
       <View
         style={[
@@ -161,8 +163,10 @@ export default class PercentageCircle extends Component {
           },
         ]}
       >
-        {this.renderHalfCircle(halfCircle1Degree)}
-        {this.renderHalfCircle(halfCircle2Degree, halfCircle2Styles)}
+        {percent ? this.renderHalfCircle(halfCircle1Degree) : null}
+        {percent
+          ? this.renderHalfCircle(halfCircle2Degree, halfCircle2Styles)
+          : null}
         {this.renderInnerCircle()}
       </View>
     )
